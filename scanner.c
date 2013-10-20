@@ -149,7 +149,7 @@ DO NOT FORGET TO COUNT THE PROGRAM LINES
   IF (c is a digit OR c is a letter){
   
   SET THE MARK AT THE BEGINING OF THE LEXEME
-  b_setmark(sc_buf,beginning_of_lexeme_offset);                      
+  b_setmark(sc_buf,forward);                      
     ....
   CODE YOUR FINATE STATE MACHINE HERE (FSM or DFA)
   IT IMPLEMENTS THE FOLLOWING ALGORITHM:
