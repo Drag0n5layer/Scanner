@@ -37,49 +37,46 @@
 #define ES  -2 /* Error state */
 #define IS  -1    /* Inavalid state */
 
-/* State transition table definition */
+/* State transition table definition */  
 
-REPLACE *CN* WITH YOUR COLUMN NUMBER  
-
-#define TABLE_COLUMNS *CN*
+#define TABLE_COLUMNS 7
 /*transition table - type of states defined in separate table */
-int  st_table[ ][TABLE_COLUMNS] = {
-/* State 0 */  {1, 6, 4, 4, IS, IS, IS, IS},
+ int  st_table[ ][TABLE_COLUMNS] = {
+/* State 0 */  {1, 6, 4, 4, IS, IS, IS},
 /* State 1 */  {1, 1, 1, 1, 2, 3, 2},
 /* State 2 */  {IS, IS, IS, IS, IS, IS, IS},
 /* State 3 */  {IS, IS, IS, IS, IS, IS, IS},
 /* State 4 */  {5, 4, 4, 4, 7, 5, 5},
 /* State 5 */  {IS, IS, IS, IS, IS, IS, IS},
-/* State 6 */ { ES, 11, IS, 9, 7, ES, 5 },
-/* State 7 */ { 2, 7, 7, 7, ES, 8, 8 },
-/* State 8 */ { IS, IS, IS, IS, IS, IS, IS },
-/* State 9 */ { IS, 10, IS, 10, IS, IS, IS },
-/* State 10 */ { IS, IS, IS, IS, IS, IS, IS },
-/* State 11 */ { IS, IS, IS, IS, IS, IS, IS },
-/* State 12 */ { IS, IS, IS, IS, IS, IS, IS }
+/* State 6 */  {ES, 10, 9, ES, 7, ES, 5},
+/* State 7 */ {2, 7, 7, 7, ES, 8, 8},
+/* State 8 */ {IS, IS, IS, IS, IS, IS, IS},
+/* State 9 */ {ES, 9, 9, ES, ES, ES, 11},
+/* State 10 */ { ES, ES, ES, ES, ES, ES, 11},
+/* State 11 */ { IS, IS, IS, IS, IS, IS, IS},
+/* State 12 */ { IS, IS, IS, IS, IS, IS, IS}
 
- 
+
 /* Accepting state table definition */
 #define ASWR     1  /* accepting state with retract */
 #define ASNR     2  /* accepting state with no retract */
 #define NOAS     0  /* not accepting state */
 
-int as_table[ ] = {NOAS, NOAS, ASWR, ASNR, NOAS, ASWR, NOAS, NOAS, ASWR, NOAS, ASNR, ASWR, ASNR};
+  int as_table[ ] = {NOAS, NOAS, ASWR, ASNR, NOAS, ASWR, NOAS, NOAS, ASWR, NOAS, NOAS, ASWR, ASNR};
 
 /* Accepting action function declarations */
-Token aa_func02(char *lexeme); 
-Token aa_func03(char *lexeme); 
-Token aa_func05(char *lexeme); 
-Token aa_func08(char *lexeme); 
-Token aa_func10(char *lexeme); 
-Token aa_func11(char *lexeme); 
-Token aa_func12(char *lexeme); 
+  Token aa_func02(char *lexeme); 
+  Token aa_func03(char *lexeme); 
+  Token aa_func05(char *lexeme); 
+  Token aa_func08(char *lexeme); 
+  Token aa_func11(char *lexeme); 
+  Token aa_func12(char *lexeme); 
 
 /* defining a new type: pointer to function (of one char * argument) 
    returning Token
 */  
 
-typedef Token (*PTR_AAF)(char *lexeme);
+   typedef Token (*PTR_AAF)(char *lexeme);
 
 
 /* Accepting function (action) callback table (array) definition */
@@ -87,22 +84,21 @@ typedef Token (*PTR_AAF)(char *lexeme);
  * Token (*aa_table[])(char lexeme[]) = {
  */
 
-PTR_AAF aa_table[ ] ={NULL, NULL, aa_func02, aa_func03, NULL, aa_func05, NULL, NULL, aa_func08, NULL, aa_func10, aa_func11, aa_func12};
+  PTR_AAF aa_table[ ] ={NULL, NULL, aa_func02, aa_func03, NULL, aa_func05, NULL, NULL, aa_func08, NULL, NULL, aa_func11, aa_func12};
 
 /* Keyword lookup table (.AND. and .OR. are not keywords) */
 
 #define KWT_SIZE  8
 
-char * kw_table []= {
-                      "ELSE",
-                      "IF",
-                      "INPUT",
-                      "OUTPUT",
-                      "PLATYPUS",
-                      "REPEAT",
-                      "THEN",
-                      "USING"   
-                     };
+  char * kw_table []= {
+    "ELSE",
+    "IF",
+    "INPUT",
+    "OUTPUT",
+    "PLATYPUS",
+    "REPEAT",
+    "THEN",
+    "USING"   
+  };
 
 #endif
-                     
