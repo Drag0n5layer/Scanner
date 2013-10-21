@@ -55,7 +55,7 @@
 /* State 10 */ { ES, ES, ES, ES, ES, ES, 11},
 /* State 11 */ { IS, IS, IS, IS, IS, IS, IS},
 /* State 12 */ { IS, IS, IS, IS, IS, IS, IS}
-
+};
 
 /* Accepting state table definition */
 #define ASWR     1  /* accepting state with retract */
