@@ -143,7 +143,42 @@ switch(c){
 return t;
 break;
 
-/* check for string concatenation operator token*/
+// /* check for arithmetic variable identifier token */
+// case'i':
+// case'o':
+// case'd':
+// case'n':
+// c = b_getc(sc_buf);
+// while (c != ' '){
+//   c = b_getc(sc_buf);
+//   if (c == '#'){
+//     t.code = SVID_T;
+//     return t;
+//   }
+// }
+// t.code = AVID_T;
+// return t;
+// break;
+
+// case '#':
+// c = b_getc(sc_buf);
+// if (c == ' '){
+//   b_retract(sc_buf);
+//   c = b_getc(sc_buf);
+//   while(c != ' ' || c != '\n'){
+//     b_retract(sc_buf);
+//     c = b_getc(sc_buf);
+//   }
+//   c = b_getc(sc_buf);
+//   t.code = AVID_T;
+// }else{
+//   t.code = ERR_T;
+// }
+// return t;
+// break;
+
+
+/* check for string concatenation operator token */
 case '<':
 c = b_getc(sc_buf);
 /* check for relational operator token */
@@ -266,15 +301,21 @@ return t;
 break;
 
   /* #define KW_T     16  /* Keyword token */
+
+
+
 case '"':
 c = b_getc(sc_buf);
- lexstart = b_get_getc_offset(sc_buf);  /*start offset of a lexeme in the input buffer */
+b_setmark(sc_buf, b_get_getc_offset(sc_buf));
 while(c!='"'){
   c = b_getc(sc_buf);
-  b_addc(str_LTBL, c)
+  b_addc(str_LTBL, c);
 }
-  lexend = b_get_getc_offset(sc_buf); /*end   offset of a lexeme in the input buffer */
-  
+b_addc(str_LTBL, "\0");
+t.code = STR_T;
+t.attribute.kwt_idx = ;
+
+
 ...
 IF STRING (FOR EXAMPLE, "text") IS FOUND      
 SET MARK TO MARK THE BEGINNING OF THE STRING
@@ -314,14 +355,11 @@ default:
 break;
 }
 
-if (isdigit(c) || isalpha(int c)){
-  b_setmark(sc_buf, b_get_getc_offset(sc_buf)); 
-}
 
 
 
 
-              
+
 /* Process state transition table */  
 
 IF (c is a digit OR c is a letter){
