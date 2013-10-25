@@ -44,14 +44,14 @@
 
 /* Operators token attributes */
 
- typedef enum ArithmeticOperators  {PLUS, MINUS, MULT, DIV} Arr_Op;
- typedef enum RelationalOperators  {EQ, NE, GT, LT} Rel_Op;
- typedef enum LogicalOperators     {AND,OR} Log_Op;
+typedef enum ArithmeticOperators  {PLUS, MINUS, MULT, DIV} Arr_Op;
+typedef enum RelationalOperators  {EQ, NE, GT, LT} Rel_Op;
+typedef enum LogicalOperators     {AND,OR} Log_Op;
 
 
 /* Structure declaring the token and its attributes */
 
- typedef union TokenAttribute{
+typedef union TokenAttribute{
 	int get_int;      /* integer attributes accessor */
 	Arr_Op arr_op;    /* arithmetic operator attribute code */
 	Rel_Op rel_op;    /* relational operator attribute code */
@@ -63,12 +63,12 @@
 	float flt_value;    /* floating-point literal attribute (value) */
     char vid_lex[VID_LEN+1]; /* variable identifier token attribute */
     char err_lex[ERR_LEN+1]; /* error token attribite */
- } TA;
+  } TA;
 
- typedef struct Token
- {
+typedef struct Token
+{
 	int code;                 /* token code */
 	TA attribute; /* token attribute */
- } Token;
+} Token;
 
 #endif
